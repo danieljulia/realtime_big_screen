@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="double-container">
+      <div class="clock-panel">
+        <div class="container">
+          <img class="hand hand-left" src="">
+          <img class="hand hand-right" src="">
+          <img class="dospunts" src="">
+          <div class="hora"></div>
+        </div>
+      </div>
+      <div class="clock-panel negative">
+        <div class="container">
+          <img class="hand hand-left" src="">
+          <img class="hand hand-right" src="">
+          <img class="dospunts" src="">
+          <div class="hora"></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script>
+      // Layout settings — edit these values directly (no web server needed)
+      config.hand_width_percent = 30;              // hand image width (% of each panel)
+      config.hand_centered_margin_left_percent = 25; // left margin when only one hand is shown
+      config.hands_offset_left_px = 0;             // shift all hands right
+      config.hands_offset_bottom_px = 0;           // shift all hands up
+      config.dospunts_left_px = 0;                  // colon (:) horizontal position
+      config.dospunts_zoom_margin_left_px = 50;    // colon zoom shift
+      config.hora_font_size = 24;                  // clock digits font size (px)
+      config.hora_bottom_px = 20;                  // clock digits distance from bottom
+      config.hora_left_percent = 50;               // clock digits horizontal position
+      config.debug_aspect_ratio = true;         // draw red 4:1 aspect ratio guide
+
+      applyLayoutConfig();
+    </script>
+    <script src="js/timecode.js"></script>
+  </body>
+</html>
