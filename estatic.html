@@ -1,0 +1,70 @@
+<!--
+  /home/pi/projectes/timecode
+
+  -->
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title></title>
+  <style>
+
+
+
+    body.negative{
+      background-color:#000;
+    }
+    body.negative img {
+      filter: invert(1);
+    }
+
+
+    .container{
+      display:flex;
+    }
+    .hand{
+      width:50vw;
+      height:auto;
+    }
+    .hand-centered{
+    width:50vw;
+    margin:25vw;
+    height:auto;
+  }
+
+
+    .dospunts{
+      position:absolute;
+      left:0;
+      top:0;
+      width:100vw;
+      height:auto;
+    }
+    .hora{
+      position:absolute;
+      bottom:20px;
+      left:20px;
+      background-color:#ff0;
+      color:#000;
+      padding:5px;
+    }
+    .zoom{
+    transform: scale(1.02, 1.02);
+  }
+    body{
+      overflow:hidden;
+    }
+    </style>
+  
+    </head>
+    <body>
+      <div class="container">
+  <img id="hand-left" class="hand hand-centered" src="images/3_L.svg">
+  <img id="hand-right" class="hand" src="images/5_R.svg">
+  <img id="hand-dospunts" class="dospunts" src="images/2punts_A.svg">
+  <div id="hora" class="hora"></div>
+  </div>
+
+    </body>
+  </html>
+  

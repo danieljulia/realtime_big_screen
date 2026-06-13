@@ -144,6 +144,11 @@ class TimeCode {
 
 
     paint(){
+       if(this.paused){
+         var that=this;
+         setTimeout(function(){ that.paint(); }, 100);
+         return;
+       }
        // console.log("pintant fase ",this.cphase,this.cdata);
         var phase=this.phases[this.cphase];
         var that=this;
@@ -169,15 +174,23 @@ class TimeCode {
       var that=this;
 
    
-      if(mans[0].length==2){
+      if(Array.isArray(mans[0]) && mans[0].length==2){
         this.mostraMans(mans[0]);
 
         //pausa
-        setTimeout(function(){
+        setTimeout(function eraseFirst(){
+          if(that.paused){
+            setTimeout(eraseFirst, 100);
+            return;
+          }
           that.esborra();
         },config.time_next_xifra-300)
 
-        setTimeout(function(){
+        setTimeout(function showSecond(){
+          if(that.paused){
+            setTimeout(showSecond, 100);
+            return;
+          }
           that.mostraMans(mans[1]);
           that.next();
         },config.time_next_xifra)
@@ -197,7 +210,11 @@ class TimeCode {
 
       //console.log("seguent pas");
         var that=this;
-        setTimeout(function(){
+        setTimeout(function step(){
+          if(that.paused){
+            setTimeout(step, 100);
+            return;
+          }
           that.esborra();
           that.cphase++; 
           if(that.cphase==that.phases.length){
@@ -257,6 +274,7 @@ class TimeCode {
        var handLeft = this.getEl(panel, 'left');
        var handRight = this.getEl(panel, 'right');
        var dospuntsEl = this.getEl(panel, 'dospunts');
+       if(!handLeft || !handRight || !dospuntsEl) return;
 
        handLeft.classList.remove('zoom');
        handRight.classList.remove('zoom');
@@ -289,7 +307,12 @@ class TimeCode {
 
 }
 
-let t=new TimeCode();
+let t;
+try {
+  t = new TimeCode();
+} catch (error) {
+  console.error('TimeCode failed to start:', error);
+}
 
 
 
@@ -303,21 +326,12 @@ document.addEventListener('keydown', function (event) {
     if(stopped) return;
 
     stopped=true;
+    if(t) t.paused=true;
 
-    
-   var now =new Date();
-
-    while(true){
-      var now2=new Date();
-      var diff =(now2.getTime() - now.getTime()) / 1000;
-      if(diff>config.time_stop){
-        stopped=false;
-        return;
-      }
-    }
-
-
-
+    setTimeout(function(){
+      if(t) t.paused=false;
+      stopped=false;
+    }, config.time_stop * 1000);
 
   }
 
