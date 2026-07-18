@@ -8,7 +8,7 @@ var config = {
   time_stop: 5,
   debug: false, //pinta la linia vermella de la mida.. posar a false per desactivar
   show_hora: true,                     // mostra la hora digital (independent de debug)
-  hora_only_two_hands: true,           // la hora només surt quan hi ha dues mans pintades
+  hora_only_two_hands: false,           // la hora només surt quan hi ha dues mans pintades
   panel_width_px: 512,                 // panel width (px)
   panel_height_px: 256,                // panel height (px)
 
@@ -26,6 +26,8 @@ var config = {
 
   // -- hora de debug --
   hora_font_size: 14,                  // clock digits font size (px)
+  hora_font_family: 'Arial',           // clock digits font family
+  hora_font_weight: 900,               // clock digits font weight: normal | bold | 100-900
   hora_bottom_px: 10,                  // clock digits distance from bottom
   hora_left_px: 256                    // clock digits horizontal position from panel left
 };
@@ -43,6 +45,8 @@ function applyPanelLayout() {
   root.style.setProperty('--dospunts-zoom-margin-left', config.dospunts_zoom_margin_left_px + 'px');
   root.style.setProperty('--dospunts-top', config.dospunts_top_px + 'px');
   root.style.setProperty('--hora-font-size', config.hora_font_size + 'px');
+  root.style.setProperty('--hora-font-family', config.hora_font_family);
+  root.style.setProperty('--hora-font-weight', config.hora_font_weight);
   root.style.setProperty('--hora-bottom', config.hora_bottom_px + 'px');
   root.style.setProperty('--hora-left', config.hora_left_px + 'px');
 
