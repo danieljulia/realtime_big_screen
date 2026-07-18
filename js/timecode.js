@@ -25,6 +25,9 @@ class TimeCode {
           elem.style.fontSize = config.hora_font_size + 'px';
         }
       });
+      if(config.dospunts_height != null){
+        document.documentElement.style.setProperty('--dospunts-top', config.dospunts_height + 'px');
+      }
     }
 
     this.preload();

@@ -23,7 +23,7 @@ body.negative{
 .dospunts{
   position:absolute;
   left:-50px;
-  top:0;
+  top:var(--dospunts-top, 0px);
   width:100vw;
   height:auto;
 }
@@ -102,7 +102,7 @@ body{
 .clock-panel .dospunts{
   position:absolute;
   left:calc(50% + var(--dospunts-left, 0px));
-  top:0;
+  top:var(--dospunts-top, 0px);
   width:calc(var(--hand-width, 50%) * 2);
   max-width:100%;
   transform:translateX(-50%);

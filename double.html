@@ -32,11 +32,12 @@
         time_stop: 5,
         negative: false,
         debug: true,
-        hand_width_percent: 30,              // hand image width (% of each panel); colon uses 2x this
+        hand_width_percent: 34,              // hand image width (% of each panel); colon uses 2x this
         hands_center_offset_px: 0,           // fine-tune horizontal centering (+ right, - left)
         hands_offset_bottom_px: 0,           // shift all hands up
-        dospunts_left_px: 0,                 // colon (:) offset from panel center
-        dospunts_zoom_margin_left_px: 0,     // colon zoom shift
+        dospunts_left_px: -120,                 // colon (:) offset from panel center
+        dospunts_zoom_margin_left_px: 10,     // colon zoom shift
+        dospunts_height_px: -50,                // colon vertical position from top (px)
         hora_font_size: 24,                  // clock digits font size (px)
         hora_bottom_px: 20,                  // clock digits distance from bottom
         hora_left_percent: 50,               // clock digits horizontal position
@@ -50,6 +51,7 @@
         root.style.setProperty('--hands-offset-bottom', config.hands_offset_bottom_px + 'px');
         root.style.setProperty('--dospunts-left', config.dospunts_left_px + 'px');
         root.style.setProperty('--dospunts-zoom-margin-left', config.dospunts_zoom_margin_left_px + 'px');
+        root.style.setProperty('--dospunts-top', config.dospunts_height_px + 'px');
         root.style.setProperty('--hora-font-size', config.hora_font_size + 'px');
         root.style.setProperty('--hora-bottom', config.hora_bottom_px + 'px');
         root.style.setProperty('--hora-left', config.hora_left_percent + '%');

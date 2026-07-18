@@ -5,7 +5,8 @@ let config={
     time_stop:5, //temps en segons que està aturat quan apretes "p", hauria de ser menys de 10
     negative:false, //mode negatiu
     debug:true,  //mostrar rellotge
-    hora_font_size:32  //mida de la font per a l'hora
+    hora_font_size:32,  //mida de la font per a l'hora
+    dospunts_height:0  //posició vertical dels dos punts des de dalt (px)
   }
   
   const queryString = window.location.search;
