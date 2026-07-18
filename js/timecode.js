@@ -10,11 +10,12 @@ class TimeCode {
     const clockPanels = document.querySelectorAll('.clock-panel');
     this.panels = clockPanels.length ? Array.from(clockPanels) : [null];
 
-    if(!config.debug){
+    if(config.show_hora === false){
       this.forEachEl('hora', function(elem){
         elem.style.display = 'none';
       });
     }
+    this.updateHoraVisibility(false);
     if(config.negative && this.panels[0] === null){
       document.body.classList.add("negative");
     }
@@ -62,18 +63,11 @@ class TimeCode {
   }
 
   preload(){
-    const images=[
-      '0_L','1_L','2_L','3_L','4_L','5_L',
-      '0_R','1_R','2_R','3_R','4_R','5_R',
-      '2punts_A','2punts_B'
-    ];
-    for(var i=0;i<images.length;i++){
-      new Image().src = 'images/'+images[i]+'.svg';
+    for(var n=0;n<=5;n++){
+      new Image().src = 'img/R/'+n+'_R.png';
+      new Image().src = 'img/L/'+n+'_L.png';
     }
-
-
-   
-
+    new Image().src = 'img/COLON.png';
   }
   update(){
   
@@ -237,6 +231,15 @@ class TimeCode {
       this.forEachEl('right', function(elem){
         elem.src='';
       });
+      this.updateHoraVisibility(false);
+    }
+
+    // Amb config.hora_only_two_hands, la hora nomes es mostra quan hi ha dues mans pintades
+    updateHoraVisibility(twoHands){
+      if(!config.hora_only_two_hands) return;
+      this.forEachEl('hora', function(elem){
+        elem.style.visibility = twoHands ? 'visible' : 'hidden';
+      });
     }
 
     toggle(){
@@ -259,14 +262,16 @@ class TimeCode {
         if(mans[0]==":"){
           dospunts=true;
         }else{
-          primera_ma='images/'+mans[0]+'_R.svg';
+          primera_ma='img/R/'+mans[0]+'_R.png';
         }
         
         if(mans[1]==-1){
            segona_ma='';
         }else{
-           segona_ma='images/'+mans[1]+'_L.svg';
+           segona_ma='img/L/'+mans[1]+'_L.png';
         }
+
+        this.updateHoraVisibility(!dospunts && mans[0]!=-1 && mans[1]!=-1);
 
         for(var i=0;i<this.panels.length;i++){
           this.paintMansOnPanel(this.panels[i], dospunts, primera_ma, segona_ma, mans);
@@ -290,7 +295,7 @@ class TimeCode {
         }
         
         if(dospunts){
-          dospuntsEl.src='images/2punts_B.svg';
+          dospuntsEl.src='img/COLON.png';
           setTimeout(function(){
             dospuntsEl.classList.add('zoom2');
           },config.time_dospunts);

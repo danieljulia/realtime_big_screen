@@ -136,6 +136,77 @@ body{
   color:#fff;
 }
 
+/* Panells independents de 512x256 (left.html / right.html) */
+body.panel-page{
+  margin:0;
+  overflow:hidden;
+}
+
+.clock-panel.panel-fixed{
+  width:var(--panel-width, 512px);
+  height:var(--panel-height, 256px);
+}
+
+/* Les imatges PNG ja venen retallades a la mida real: es mostren a mida
+   natural (escalades per --image-scale) i el flex les centra al panell */
+.clock-panel.panel-fixed .container{
+  align-items:var(--hands-align, flex-end);
+  gap:var(--hands-gap, 0px);
+  transform:translate(var(--hands-center-offset, 0px), var(--hands-offset-y, 0px));
+}
+
+.clock-panel.panel-fixed .container > .hand{
+  flex:0 0 auto;
+  width:auto;
+  max-width:none;
+  height:auto;
+  zoom:var(--image-scale, 1);
+}
+
+/* la regla base .hand-centered arrossega un margin-left:25vw pensat per a
+   pantalla completa; al panell fixe la ma unica ja queda centrada pel flex */
+.clock-panel.panel-fixed .container > .hand-centered{
+  margin-left:0;
+}
+
+.clock-panel.panel-fixed .dospunts{
+  width:auto;
+  max-width:none;
+  transform:translateX(-50%) scale(var(--image-scale, 1));
+}
+
+/* A la versio negativa tot el fons del navegador es negre */
+body.negative-page{
+  background-color:#000;
+}
+
+/* Versio en negatiu feta nomes amb CSS: s'inverteix el panell sencer,
+   sense invertir cada imatge per separat */
+.clock-panel.panel-fixed.negative{
+  background-color:#fff;
+  filter:invert(1);
+}
+
+.clock-panel.panel-fixed.negative img{
+  filter:none;
+}
+
+.clock-panel.panel-fixed.negative .hora{
+  color:#000;
+}
+
+.panel-debug-rect{
+  position:fixed;
+  top:0;
+  left:0;
+  width:var(--panel-width, 512px);
+  height:var(--panel-height, 256px);
+  border:1px solid red;
+  box-sizing:border-box;
+  pointer-events:none;
+  z-index:9999;
+}
+
 .aspect-ratio-debug{
   position:fixed;
   top:50%;
