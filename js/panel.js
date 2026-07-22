@@ -14,7 +14,7 @@ var config = {
 
   // -- refinament de la posició de les mans --
   image_scale: 1,                      // escala de totes les imatges (1 = mida natural)
-  hands_gap_px: 112,                    // separació horitzontal entre les dues mans
+  hands_margin_px: 10,                // marge exterior quan hi ha 2 mans (esquerra→límit 0, dreta→límit dret)
   hands_align: 'flex-end',             // alineació vertical: flex-start | center | flex-end
   hands_center_offset_px: 0,           // desplaçament horitzontal del grup (+ dreta, - esquerra)
   hands_offset_y_px: 0,                // desplaçament vertical del grup (+ avall, - amunt)
@@ -37,7 +37,7 @@ function applyPanelLayout() {
   root.style.setProperty('--panel-width', config.panel_width_px + 'px');
   root.style.setProperty('--panel-height', config.panel_height_px + 'px');
   root.style.setProperty('--image-scale', config.image_scale);
-  root.style.setProperty('--hands-gap', config.hands_gap_px + 'px');
+  root.style.setProperty('--hands-margin', config.hands_margin_px + 'px');
   root.style.setProperty('--hands-align', config.hands_align);
   root.style.setProperty('--hands-center-offset', config.hands_center_offset_px + 'px');
   root.style.setProperty('--hands-offset-y', config.hands_offset_y_px + 'px');

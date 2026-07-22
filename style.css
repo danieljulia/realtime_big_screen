@@ -152,8 +152,17 @@ body.panel-page{
    natural (escalades per --image-scale) i el flex les centra al panell */
 .clock-panel.panel-fixed .container{
   align-items:var(--hands-align, flex-end);
-  gap:var(--hands-gap, 0px);
+  padding-left:var(--hands-margin, 0px);
+  padding-right:var(--hands-margin, 0px);
+  justify-content:space-between;
   transform:translate(var(--hands-center-offset, 0px), var(--hands-offset-y, 0px));
+}
+
+/* Amb una sola mà, ignora el marge i centra */
+.clock-panel.panel-fixed .container:has(> .hand-centered){
+  padding-left:0;
+  padding-right:0;
+  justify-content:center;
 }
 
 .clock-panel.panel-fixed .container > .hand{
