@@ -1,4 +1,5 @@
-// Configuració compartida dels panells independents de 512x256 (left.html i right.html)
+// Configuració compartida dels panells de 512x256
+// (left.html, right.html, horizontal.html, vertical.html)
 // Tot en pixels absoluts: el panell no es responsive, funciona nomes a la mida donada.
 // Les imatges PNG es mostren a mida natural, multiplicada per image_scale.
 var config = {

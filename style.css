@@ -137,7 +137,8 @@ body{
   color:#fff;
 }
 
-/* Panells independents de 512x256 (left.html / right.html) */
+/* Panells independents de 512x256 (left.html / right.html)
+   i combos (horizontal.html 1024x256, vertical.html 512x512) */
 body.panel-page{
   margin:0;
   overflow:hidden;
@@ -146,6 +147,23 @@ body.panel-page{
 .clock-panel.panel-fixed{
   width:var(--panel-width, 512px);
   height:var(--panel-height, 256px);
+  flex-shrink:0;
+}
+
+.panel-combo-wrap{
+  display:flex;
+}
+
+.panel-combo-horizontal .panel-combo-wrap{
+  flex-direction:row;
+  width:calc(var(--panel-width, 512px) * 2);
+  height:var(--panel-height, 256px);
+}
+
+.panel-combo-vertical .panel-combo-wrap{
+  flex-direction:column;
+  width:var(--panel-width, 512px);
+  height:calc(var(--panel-height, 256px) * 2);
 }
 
 /* Les imatges PNG ja venen retallades a la mida real: es mostren a mida
@@ -215,6 +233,16 @@ body.negative-page{
   box-sizing:border-box;
   pointer-events:none;
   z-index:9999;
+}
+
+.panel-combo-horizontal .panel-debug-rect{
+  width:calc(var(--panel-width, 512px) * 2);
+  height:var(--panel-height, 256px);
+}
+
+.panel-combo-vertical .panel-debug-rect{
+  width:var(--panel-width, 512px);
+  height:calc(var(--panel-height, 256px) * 2);
 }
 
 .aspect-ratio-debug{
