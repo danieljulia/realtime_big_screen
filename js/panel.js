@@ -10,6 +10,7 @@ var config = {
   debug: false, //pinta la linia vermella de la mida.. posar a false per desactivar
   show_hora: true,                     // mostra la hora digital (independent de debug)
   hora_only_two_hands: false,           // la hora només surt quan hi ha dues mans pintades
+  hora_only_colon: true,               // la hora només surt quan es mostren els dos punts (:)
   panel_width_px: 512,                 // panel width (px)
   panel_height_px: 256,                // panel height (px)
 

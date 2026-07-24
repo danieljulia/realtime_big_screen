@@ -15,7 +15,7 @@ class TimeCode {
         elem.style.display = 'none';
       });
     }
-    this.updateHoraVisibility(false);
+    this.updateHoraVisibility({ dospunts: false, twoHands: false });
     if(config.negative && this.panels[0] === null){
       document.body.classList.add("negative");
     }
@@ -231,14 +231,22 @@ class TimeCode {
       this.forEachEl('right', function(elem){
         elem.src='';
       });
-      this.updateHoraVisibility(false);
+      this.updateHoraVisibility({ dospunts: false, twoHands: false });
     }
 
-    // Amb config.hora_only_two_hands, la hora nomes es mostra quan hi ha dues mans pintades
-    updateHoraVisibility(twoHands){
-      if(!config.hora_only_two_hands) return;
+    // Condiciona la visibilitat de l'hora digital segons config:
+    // - hora_only_two_hands: només amb dues mans
+    // - hora_only_colon: només quan es mostren els dos punts (:)
+    updateHoraVisibility(state){
+      if(!config.hora_only_two_hands && !config.hora_only_colon) return;
+      var visible = false;
+      if(config.hora_only_colon){
+        visible = !!state.dospunts;
+      } else if(config.hora_only_two_hands){
+        visible = !!state.twoHands;
+      }
       this.forEachEl('hora', function(elem){
-        elem.style.visibility = twoHands ? 'visible' : 'hidden';
+        elem.style.visibility = visible ? 'visible' : 'hidden';
       });
     }
 
@@ -271,7 +279,10 @@ class TimeCode {
            segona_ma='img/L/'+mans[1]+'_L.png';
         }
 
-        this.updateHoraVisibility(!dospunts && mans[0]!=-1 && mans[1]!=-1);
+        this.updateHoraVisibility({
+          dospunts: dospunts,
+          twoHands: !dospunts && mans[0]!=-1 && mans[1]!=-1
+        });
 
         for(var i=0;i<this.panels.length;i++){
           this.paintMansOnPanel(this.panels[i], dospunts, primera_ma, segona_ma, mans);

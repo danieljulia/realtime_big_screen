@@ -145,9 +145,27 @@ body.panel-page{
 }
 
 .clock-panel.panel-fixed{
+  position:relative;
   width:var(--panel-width, 512px);
   height:var(--panel-height, 256px);
   flex-shrink:0;
+}
+
+.clock-panel.panel-fixed > .panel-bg{
+  position:absolute;
+  inset:0;
+  background-color:#fff;
+  z-index:0;
+  pointer-events:none;
+}
+
+.clock-panel.panel-fixed.negative > .panel-bg{
+  background-color:#000;
+}
+
+.clock-panel.panel-fixed > .container{
+  position:relative;
+  z-index:1;
 }
 
 .panel-combo-wrap{
@@ -208,19 +226,14 @@ body.negative-page{
   background-color:#000;
 }
 
-/* Versio en negatiu feta nomes amb CSS: s'inverteix el panell sencer,
-   sense invertir cada imatge per separat */
-.clock-panel.panel-fixed.negative{
-  background-color:#fff;
-  filter:invert(1);
-}
-
-.clock-panel.panel-fixed.negative img{
-  filter:none;
+/* Versio en negatiu: fons físic negre; mans a blanc pur (brightness 0 + invert) */
+.clock-panel.panel-fixed.negative .hand,
+.clock-panel.panel-fixed.negative .dospunts{
+  filter:brightness(0) invert(1);
 }
 
 .clock-panel.panel-fixed.negative .hora{
-  color:#000;
+  color:#fff;
 }
 
 .panel-debug-rect{
